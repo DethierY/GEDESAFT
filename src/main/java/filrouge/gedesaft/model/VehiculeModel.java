@@ -1,6 +1,6 @@
-package co.simplon.springboot.lesexperts.models;
+package filrouge.gedesaft.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class VehiculeModel {
 	
@@ -10,9 +10,10 @@ public class VehiculeModel {
 	private String modeleVehicule;
 	private String immatriculationVehicule;
 	private String couleurvehicule;
-	private ArrayList<AffaireModel> listAffaireVehicule;
-	private ArrayList<EmpreinteModel> listEmpreinteVehicule;
-	private ArrayList<AdnModel> listAdnVehicule;
+	private List<AffaireModel> listAffaireVehicule;
+	private List<EmpreinteModel> listEmpreinteVehicule;
+	private List<AdnModel> listAdnVehicule;
+	private ProtagonnisteModelImpl protagonnisteVehicule;
 	
 	public VehiculeModel () {
 		super();
@@ -66,31 +67,36 @@ public class VehiculeModel {
 		this.couleurvehicule = couleurvehicule;
 	}
 
-	public ArrayList<AffaireModel> getListAffairesVehicule() {
+	public List<AffaireModel> getListAffairesVehicule() {
 		return listAffaireVehicule;
 	}
 
-	public void setListAffairesVehicule(ArrayList<AffaireModel> listAffaireVehicule) {
+	public void setListAffairesVehicule(List<AffaireModel> listAffaireVehicule) {
 		this.listAffaireVehicule = listAffaireVehicule;
 	}
 
-	public ArrayList<EmpreinteModel> getListEmpreintesVehicule() {
+	public List<EmpreinteModel> getListEmpreintesVehicule() {
 		return listEmpreinteVehicule;
 	}
 
-	public void setListEmpreintesVehicule(ArrayList<EmpreinteModel> listEmpreinteVehicule) {
+	public void setListEmpreintesVehicule(List<EmpreinteModel> listEmpreinteVehicule) {
 		this.listEmpreinteVehicule = listEmpreinteVehicule;
 	}
 
-	public ArrayList<AdnModel> getListAdnVehicule() {
+	public List<AdnModel> getListAdnVehicule() {
 		return listAdnVehicule;
 	}
 
-	public void setListAdnVehicule(ArrayList<AdnModel> listAdnVehicule) {
+	public void setListAdnVehicule(List<AdnModel> listAdnVehicule) {
 		this.listAdnVehicule = listAdnVehicule;
+	};
+	
+	public ProtagonnisteModelImpl getProtagonnisteVehicule() {
+		return protagonnisteVehicule;
 	}
 	
-	
-
+	public void setProtagonnisteVehicule(ProtagonnisteModelImpl protagonnisteVehicule) {
+		this.protagonnisteVehicule = protagonnisteVehicule;
+	}
 	
 }

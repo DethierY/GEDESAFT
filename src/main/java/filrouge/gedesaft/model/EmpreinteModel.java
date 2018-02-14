@@ -1,4 +1,4 @@
-package co.simplon.springboot.lesexperts.models;
+package filrouge.gedesaft.model;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ public class EmpreinteModel {
 	
 	private int id_empreinte;
 	private String empreinte;
-	private PersonneModel personneEmpreinte;
+	private ProtagonnisteModelImpl protagonnisteEmpreinte;
 	private ArrayList<ArmeModel> listArmeEmpreinte;
 	private ArrayList<VehiculeModel> listVehiculeEmrpreinte;
 	
@@ -30,12 +30,12 @@ public class EmpreinteModel {
 		this.empreinte = empreinte;
 	}
 
-	public PersonneModel getPersonneEmpreinte() {
-		return personneEmpreinte;
+	public ProtagonnisteModelImpl getPersonneEmpreinte() {
+		return protagonnisteEmpreinte;
 	}
 
-	public void setPersonneEmpreinte(PersonneModel personneEmpreinte) {
-		this.personneEmpreinte = personneEmpreinte;
+	public void setPersonneEmpreinte(ProtagonnisteModelImpl personneEmpreinte) {
+		this.protagonnisteEmpreinte = personneEmpreinte;
 	}
 
 	public ArrayList<ArmeModel> getListArmeEmpreinte() {

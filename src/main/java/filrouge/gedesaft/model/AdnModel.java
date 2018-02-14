@@ -1,4 +1,4 @@
-package co.simplon.springboot.lesexperts.models;
+package filrouge.gedesaft.model;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ public class AdnModel {
 	
 	private int id_ADN;
 	private String ADN;
-	private PersonneModel personneAdn;
+	private ProtagonnisteModelImpl protagonnisteAdn;
 	private ArrayList<ArmeModel> listArmeAdn;
 	private ArrayList<VehiculeModel> listVehiculeAdn;
 	
@@ -30,12 +30,12 @@ public class AdnModel {
 		ADN = aDN;
 	}
 
-	public PersonneModel getPersonneAdn() {
-		return personneAdn;
+	public ProtagonnisteModelImpl getPersonneAdn() {
+		return protagonnisteAdn;
 	}
 
-	public void setPersonneAdn(PersonneModel personneAdn) {
-		this.personneAdn = personneAdn;
+	public void setPersonneAdn(ProtagonnisteModelImpl protagonnisteAdn) {
+		this.protagonnisteAdn = protagonnisteAdn;
 	}
 
 	public ArrayList<ArmeModel> getListArmeAdn() {

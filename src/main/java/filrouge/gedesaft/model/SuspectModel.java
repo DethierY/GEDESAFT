@@ -1,6 +1,6 @@
-package co.simplon.springboot.lesexperts.models;
+package filrouge.gedesaft.model;
 
-public class SuspectModel {
+public class SuspectModel extends ProtagonnisteModelImpl {
 	
 	private int id_suspect;
 	private String pseudoSuspect;

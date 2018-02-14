@@ -1,16 +1,15 @@
-package co.simplon.springboot.lesexperts.models;
+package filrouge.gedesaft.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class PersonnelModel {
+public class PersonnelModel extends ProtagonnisteModelImpl {
 	
 	private int id_personnel;
-	private String nomPersonnel;
-	private String prenomPersonnel;
 	private String gradePersonnel;
+	private int droitAccesPersonnel;
 	private String identifiantPersonnel;
 	private String passwordPersonnel;
-	private ArrayList<AffaireModel> listAffairePersonnel;
+	private List<AffaireModel> listAffairePersonnel;
 	
 	public PersonnelModel () {
 		super();
@@ -24,28 +23,20 @@ public class PersonnelModel {
 		this.id_personnel = id_personnel;
 	}
 
-	public String getNomPersonnel() {
-		return nomPersonnel;
-	}
-
-	public void setNomPersonnel(String nomPersonnel) {
-		this.nomPersonnel = nomPersonnel;
-	}
-
-	public String getPrenomPersonnel() {
-		return prenomPersonnel;
-	}
-
-	public void setPrenomPersonnel(String prenomPersonnel) {
-		this.prenomPersonnel = prenomPersonnel;
-	}
-
 	public String getGradePersonnel() {
 		return gradePersonnel;
 	}
 
 	public void setGradePersonnel(String gradePersonnel) {
 		this.gradePersonnel = gradePersonnel;
+	}
+	
+	public int getDroitAccesPersonnel() {
+		return droitAccesPersonnel;
+	}
+	
+	public void setDroitPersonnel(int droitAccesPersonnel) {
+		this.droitAccesPersonnel = droitAccesPersonnel;
 	}
 
 	public String getIdentifiantPersonnel() {
@@ -64,11 +55,11 @@ public class PersonnelModel {
 		this.passwordPersonnel = passwordPersonnel;
 	}
 
-	public ArrayList<AffaireModel> getListAffairePersonnel() {
+	public List<AffaireModel> getListAffairePersonnel() {
 		return listAffairePersonnel;
 	}
 
-	public void setListAffairePersonnel(ArrayList<AffaireModel> listAffairePersonnel) {
+	public void setListAffairePersonnel(List<AffaireModel> listAffairePersonnel) {
 		this.listAffairePersonnel = listAffairePersonnel;
 	}
 

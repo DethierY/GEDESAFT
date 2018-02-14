@@ -1,6 +1,6 @@
-package co.simplon.springboot.lesexperts.models;
+package filrouge.gedesaft.model;
 
-public class TemoinModel {
+public class TemoinModel extends ProtagonnisteModelImpl {
 	
 	private int id_temoin;
 	private String temoignageTemoin;

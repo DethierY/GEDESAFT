@@ -1,6 +1,6 @@
-package co.simplon.springboot.lesexperts.models;
+package filrouge.gedesaft.model;
 
-public class VictimeModel {
+public class VictimeModel extends ProtagonnisteModelImpl {
 	
 	private int id_victime;
 	private String typeAgressionVictime;
@@ -24,5 +24,5 @@ public class VictimeModel {
 	public void setTypeAgressionVictime(String typeAgressionVictime) {
 		this.typeAgressionVictime = typeAgressionVictime;
 	}
-
+	
 }

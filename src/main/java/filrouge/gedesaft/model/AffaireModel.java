@@ -1,7 +1,7 @@
-package co.simplon.springboot.lesexperts.models;
+package filrouge.gedesaft.model;
 
 import java.sql.Date;
-import java.util.ArrayList;
+import java.util.List;
 
 public class AffaireModel {
 	
@@ -11,10 +11,9 @@ public class AffaireModel {
 	private Date date_clotureAffaire;
 	private String lieuAffaire;
 	private String rapportAffaire;
-	private ArrayList<VehiculeModel> listEmpreinteAffaire;
-	private ArrayList<ArmeModel> listArmeAffaire;
-	private ArrayList<PersonnelModel> listPersonnelAffaire;
-	private ArrayList<PersonneModel> listPersonneAffaire;
+	private List<VehiculeModel> listEmpreinteAffaire;
+	private List<ArmeModel> listArmeAffaire;
+	private List<ProtagonnisteModelImpl> listProtagonnisteAffaire;
 	
 	public AffaireModel() {
 		super();
@@ -80,43 +79,32 @@ public class AffaireModel {
 		this.rapportAffaire = rapportAffaire;
 	}
 
-	public ArrayList<VehiculeModel> getListEmpreinteAffaire() {
+	public List<VehiculeModel> getListEmpreinteAffaire() {
 		return listEmpreinteAffaire;
 	}
 
 
-	public void setListEmpreinteAffaire(ArrayList<VehiculeModel> listEmpreinteAffaire) {
+	public void setListEmpreinteAffaire (List<VehiculeModel> listEmpreinteAffaire) {
 		this.listEmpreinteAffaire = listEmpreinteAffaire;
 	}
 
 
-	public ArrayList<ArmeModel> getListArmeAffaire() {
+	public List<ArmeModel> getListArmeAffaire() {
 		return listArmeAffaire;
 	}
 
 
-	public void setListArmeAffaire(ArrayList<ArmeModel> listArmeAffaire) {
+	public void setListArmeAffaire(List<ArmeModel> listArmeAffaire) {
 		this.listArmeAffaire = listArmeAffaire;
 	}
 
-
-	public ArrayList<PersonnelModel> getListPersonnelAffaire() {
-		return listPersonnelAffaire;
+	public List<ProtagonnisteModelImpl> getListProtagonnisteAffaire() {
+		return listProtagonnisteAffaire;
 	}
 
 
-	public void setListPersonnelAffaire(ArrayList<PersonnelModel> listPersonnelAffaire) {
-		this.listPersonnelAffaire = listPersonnelAffaire;
-	}
-
-
-	public ArrayList<PersonneModel> getListPersonneAffaire() {
-		return listPersonneAffaire;
-	}
-
-
-	public void setListPersonneAffaire(ArrayList<PersonneModel> listPersonneAffaire) {
-		this.listPersonneAffaire = listPersonneAffaire;
+	public void setListProtagonnisteAffaire(List<ProtagonnisteModelImpl> listProtagonnisteAffaire) {
+		this.listProtagonnisteAffaire = listProtagonnisteAffaire;
 	}
 	
 }

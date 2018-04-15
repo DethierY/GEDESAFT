@@ -1,4 +1,4 @@
-package co.simplon.springboot.lesexperts;
+package filrouge.gedesaft;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class LesExpertsApplicationTests {
+public class GedesaftApplicationTests {
 
 	@Test
 	public void contextLoads() {

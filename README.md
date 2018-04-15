@@ -1,18 +1,10 @@
 # GEDESAFT
 
-Fil rouge
+Ce repos est l'original, avec des PrepareStatement, avant qu'il y ait changement de techno et passage à hibernate.
 
-# application.properties
+Il contient deux choses pour l'évaluation:
+    - un test unitaire -chose que je n'ai pas réussis à faire avec Hibernate-
+    - des requêtes SQL à base de JOIN que je n'ai pas réussi à mettre en place avec Hibernate (dans la classe DaoVehicule).
+    
+Et honnêtement, je voulais également un avis général sur ce travail que j'avais fait...
 
-j'ai exclu du repo le fichier **application.properties** pour que chacun ai sa propre configuration de travail (je pense notamment aux motes de passe sql).
-
-voici le modèle à mettre dans le dossier **src/main/ressources**, avec une base de données appelée **lesexperts**:
-
-    # connection base
-    spring.datasource.url=jdbc:mysql://localhost/lesexperts?useSSL=false
-    spring.datasource.username=admin
-    spring.datasource.password=admin
-    spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-    # log
-    logging.level.root=INFO
-    logging.file=c:/data/log-java-springboot-lesexperts.log  

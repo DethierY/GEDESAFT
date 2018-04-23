@@ -8,6 +8,7 @@ public class Vehicule {
 	private String modele;
 	private String immatriculation;
 	private String couleur;
+	private Personne proprietaire;
 	
 	public Vehicule () {
 		super();
@@ -49,7 +50,7 @@ public class Vehicule {
 		return immatriculation;
 	}
 
-	public void setImmatriculationVehicule(String immatriculation) {
+	public void setImmatriculation(String immatriculation) {
 		this.immatriculation = immatriculation;
 	}
 
@@ -59,6 +60,14 @@ public class Vehicule {
 
 	public void setCouleur(String couleur) {
 		this.couleur = couleur;
+	}
+
+	public Personne getProprietaire() {
+		return proprietaire;
+	}
+
+	public void setProprietaire(Personne proprietaire) {
+		this.proprietaire = proprietaire;
 	}
 	
 }

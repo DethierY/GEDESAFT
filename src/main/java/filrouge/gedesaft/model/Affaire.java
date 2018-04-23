@@ -6,12 +6,15 @@ import java.util.List;
 public class Affaire {
 	
 	private Long id_affaire;
-	private String dossier;
+	private Date dateOuverture;
+	private String nom;
 	private String lieu;
-	private List<Vehicule> listVehiculeImplique;
-	private List<Arme> listArmeImpliquee;
+	private List<VehiculeImplique> listVehiculeImplique;
+	private List<ArmeImpliquee> listArmeImpliquee;
 	private List<Suspect> listSuspect;
 	private List<Agent> listAgentAffecte;
+	private List<Victime> listVictime;
+	private List<Temoin> listTemoin;
 	
 	public Affaire() {
 		super();
@@ -25,12 +28,20 @@ public class Affaire {
 		this.id_affaire = id_affaire;
 	}
 
-	public String getDossier() {
-		return dossier;
+	public Date getDateOuverture() {
+		return dateOuverture;
 	}
 
-	public void setDossier(String dossier) {
-		this.dossier = dossier;
+	public void setDateOuverture(Date dateOuverture) {
+		this.dateOuverture = dateOuverture;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public String getLieu() {
@@ -41,19 +52,19 @@ public class Affaire {
 		this.lieu = lieu;
 	}
 
-	public List<Vehicule> getListVehiculeImplique() {
+	public List<VehiculeImplique> getListVehiculeImplique() {
 		return listVehiculeImplique;
 	}
 
-	public void setListVehiculeImplique(List<Vehicule> listVehiculeImplique) {
+	public void setListVehiculeImplique(List<VehiculeImplique> listVehiculeImplique) {
 		this.listVehiculeImplique = listVehiculeImplique;
 	}
 
-	public List<Arme> getListArmeImpliquee() {
+	public List<ArmeImpliquee> getListArmeImpliquee() {
 		return listArmeImpliquee;
 	}
 
-	public void setListArmeImpliquee(List<Arme> listArmeImpliquee) {
+	public void setListArmeImpliquee(List<ArmeImpliquee> listArmeImpliquee) {
 		this.listArmeImpliquee = listArmeImpliquee;
 	}
 
@@ -71,6 +82,22 @@ public class Affaire {
 
 	public void setListAgentAffecte(List<Agent> listAgentAffecte) {
 		this.listAgentAffecte = listAgentAffecte;
+	}
+
+	public List<Victime> getListVictime() {
+		return listVictime;
+	}
+
+	public void setListVictime(List<Victime> listVictime) {
+		this.listVictime = listVictime;
+	}
+
+	public List<Temoin> getListTemoin() {
+		return listTemoin;
+	}
+
+	public void setListTemoin(List<Temoin> listTemoin) {
+		this.listTemoin = listTemoin;
 	}
 	
 }

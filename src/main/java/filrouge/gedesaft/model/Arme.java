@@ -7,6 +7,7 @@ public class Arme {
 	private Long numeroSerie;
 	private String modele;
 	private String calibre;
+	private Personne proprietaire;
 	
 	public Arme () {
 		super();
@@ -50,6 +51,14 @@ public class Arme {
 
 	public void setCalibre(String calibre) {
 		this.calibre = calibre;
+	}
+
+	public Personne getProprietaire() {
+		return proprietaire;
+	}
+
+	public void setProprietaire(Personne proprietaire) {
+		this.proprietaire = proprietaire;
 	}
 
 }

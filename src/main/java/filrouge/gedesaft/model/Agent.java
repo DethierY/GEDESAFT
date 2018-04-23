@@ -1,55 +1,26 @@
 package filrouge.gedesaft.model;
 
-public class Agent {
+import java.util.Date;
+
+public class Agent extends Personne {
+
+	private Long id;
+	private Date dateAffection;
 	
-	private Long id_agentAffecte;
-	private String nom;
-	private String prenom;
-	private String grade;
-	private boolean enService;
+	public Long getId() {
+		return id;
+	}
 	
-	public Agent () {
-		super();
+	public void setId(long id) {
+		this.id = id;
 	}
-
-	public Long getId_agentAffecte() {
-		return id_agentAffecte;
+	
+	public Date getDateAffection() {
+		return dateAffection;
 	}
-
-	public void setId_agentAffecte(Long id_agentAffecte) {
-		this.id_agentAffecte = id_agentAffecte;
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	public String getGrade() {
-		return grade;
-	}
-
-	public void setGrade(String grade) {
-		this.grade = grade;
-	}
-
-	public boolean isEnService() {
-		return enService;
-	}
-
-	public void setEnService(boolean enService) {
-		this.enService = enService;
+	
+	public void setDateAffection(Date dateAffection) {
+		this.dateAffection = dateAffection;
 	}
 
 }

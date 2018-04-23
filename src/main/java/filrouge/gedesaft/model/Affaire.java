@@ -7,16 +7,11 @@ public class Affaire {
 	
 	private Long id_affaire;
 	private String dossier;
-	private Date date_cration;
-	private Date date_cloture;
 	private String lieu;
-	private String rapport;
-	private List<VehiculeImplique> listVehiculeImplique;
-	private List<ArmeImpliquee> listArmeImpliquee;
+	private List<Vehicule> listVehiculeImplique;
+	private List<Arme> listArmeImpliquee;
 	private List<Suspect> listSuspect;
-	private	List<Temoin> listTemoin;
-	private List<Victime> listVictime;
-	private List<AgentAffecte> listAgentAffecte;
+	private List<Agent> listAgentAffecte;
 	
 	public Affaire() {
 		super();
@@ -38,22 +33,6 @@ public class Affaire {
 		this.dossier = dossier;
 	}
 
-	public Date getDate_cration() {
-		return date_cration;
-	}
-
-	public void setDate_cration(Date date_cration) {
-		this.date_cration = date_cration;
-	}
-
-	public Date getDate_cloture() {
-		return date_cloture;
-	}
-
-	public void setDate_cloture(Date date_cloture) {
-		this.date_cloture = date_cloture;
-	}
-
 	public String getLieu() {
 		return lieu;
 	}
@@ -62,27 +41,19 @@ public class Affaire {
 		this.lieu = lieu;
 	}
 
-	public String getRapport() {
-		return rapport;
-	}
-
-	public void setRapport(String rapport) {
-		this.rapport = rapport;
-	}
-
-	public List<VehiculeImplique> getListVehiculeImplique() {
+	public List<Vehicule> getListVehiculeImplique() {
 		return listVehiculeImplique;
 	}
 
-	public void setListVehiculeImplique(List<VehiculeImplique> listVehiculeImplique) {
+	public void setListVehiculeImplique(List<Vehicule> listVehiculeImplique) {
 		this.listVehiculeImplique = listVehiculeImplique;
 	}
 
-	public List<ArmeImpliquee> getListArmeImpliquee() {
+	public List<Arme> getListArmeImpliquee() {
 		return listArmeImpliquee;
 	}
 
-	public void setListArmeImpliquee(List<ArmeImpliquee> listArmeImpliquee) {
+	public void setListArmeImpliquee(List<Arme> listArmeImpliquee) {
 		this.listArmeImpliquee = listArmeImpliquee;
 	}
 
@@ -94,27 +65,11 @@ public class Affaire {
 		this.listSuspect = listSuspect;
 	}
 
-	public List<Temoin> getListTemoin() {
-		return listTemoin;
-	}
-
-	public void setListTemoin(List<Temoin> listTemoin) {
-		this.listTemoin = listTemoin;
-	}
-
-	public List<Victime> getListVictime() {
-		return listVictime;
-	}
-
-	public void setListVictime(List<Victime> listVictime) {
-		this.listVictime = listVictime;
-	}
-
-	public List<AgentAffecte> getListAgentAffecte() {
+	public List<Agent> getListAgentAffecte() {
 		return listAgentAffecte;
 	}
 
-	public void setListAgentAffecte(List<AgentAffecte> listAgentAffecte) {
+	public void setListAgentAffecte(List<Agent> listAgentAffecte) {
 		this.listAgentAffecte = listAgentAffecte;
 	}
 	

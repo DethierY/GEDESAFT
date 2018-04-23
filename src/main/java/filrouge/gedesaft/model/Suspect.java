@@ -1,18 +1,14 @@
 package filrouge.gedesaft.model;
 
-import java.util.Date;
-
 public class Suspect {
 	
 	private Long id_suspect;
-	private String pseudo;
-	private String photo;
-	private Date dateImplication;
+	private String nom;
+	private String prenom;
 	private String signeParticulier;
 	private String couleurPeau;
 	private String couleurCheveux;
 	private Integer taille;
-	private Personne identite;
 	
 	public Suspect () {
 		super();
@@ -26,28 +22,20 @@ public class Suspect {
 		this.id_suspect = id_suspect;
 	}
 
-	public String getPseudo() {
-		return pseudo;
+	public String getNom() {
+		return nom;
 	}
 
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
-	public String getPhoto() {
-		return photo;
+	public String getPrenom() {
+		return prenom;
 	}
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
-
-	public Date getDateImplication() {
-		return dateImplication;
-	}
-
-	public void setDateImplication(Date dateImplication) {
-		this.dateImplication = dateImplication;
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 
 	public String getSigneParticulier() {
@@ -80,14 +68,6 @@ public class Suspect {
 
 	public void setTaille(Integer taille) {
 		this.taille = taille;
-	}
-
-	public Personne getIdentite() {
-		return identite;
-	}
-
-	public void setIdentite(Personne identite) {
-		this.identite = identite;
 	}
 
 }

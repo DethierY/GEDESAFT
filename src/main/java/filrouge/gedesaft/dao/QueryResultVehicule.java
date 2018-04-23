@@ -12,12 +12,12 @@ public class QueryResultVehicule implements IQueryResultObject {
 	 */
 	public Vehicule queryResult(ResultSet rs) throws Exception {
 		Vehicule vehicule = new Vehicule ();
-		vehicule.setId_vehicule(rs.getLong("id_vehicule"));
+		vehicule.setId(rs.getLong("id_vehicule"));
 		vehicule.setType(rs.getString("type"));
 		vehicule.setMarque(rs.getString("marque"));
 		vehicule.setModele(rs.getString("modele"));
 		vehicule.setCouleur(rs.getString("couleur"));
-		vehicule.setImmatriculationVehicule(rs.getString("immatriculation"));
+		vehicule.setImmatriculation(rs.getString("immatriculation"));
 		return vehicule;
 	}
 

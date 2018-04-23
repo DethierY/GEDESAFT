@@ -2,7 +2,7 @@ package filrouge.gedesaft.model;
 
 public class Vehicule {
 	
-	private Long id_vehicule;
+	private Long id;
 	private String type;
 	private String marque;
 	private String modele;
@@ -14,12 +14,12 @@ public class Vehicule {
 		super();
 	}
 
-	public Long getId_vehicule() {
-		return id_vehicule;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_vehicule(Long id_vehicule) {
-		this.id_vehicule = id_vehicule;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getType() {

@@ -15,7 +15,7 @@ public class BuildInsertVehiculeRequest implements IBuildInsertObjectRequest{
 	@Override
 	public String getRequest() {
 		System.out.println("BuildInsertVehiculeRequest getRequest");
-		String request = "INSERT INTO vehicule (id_vehicule, type, marque, modele, immatriculation, couleur, id_personne) VALUES (?,?,?,?,?,?,?)";
+		String request = "INSERT INTO vehicule (id, type, marque, modele, immatriculation, couleur, idPersonne) VALUES (?,?,?,?,?,?,?)";
 		return request;
 	}
 	
@@ -27,14 +27,14 @@ public class BuildInsertVehiculeRequest implements IBuildInsertObjectRequest{
 	public void buildRequest(PreparedStatement pstmt, Object vehicule) throws Exception {
 		System.out.println("BuildInsertVehiculeRequest buildRequest");
 		int i = 0;
-		((Vehicule) vehicule).setId_vehicule(new Long(0));
-		pstmt.setLong(++i, ((Vehicule) vehicule).getId_vehicule());
+		((Vehicule) vehicule).setId(new Long(0));
+		pstmt.setLong(++i, ((Vehicule) vehicule).getId());
 		pstmt.setString(++i, ((Vehicule) vehicule).getType());
 		pstmt.setString(++i, ((Vehicule) vehicule).getMarque());
 		pstmt.setString(++i, ((Vehicule) vehicule).getModele());
 		pstmt.setString(++i, ((Vehicule) vehicule).getImmatriculation());
 		pstmt.setString(++i, ((Vehicule) vehicule).getCouleur());
-		pstmt.setLong(++i, ((Vehicule) vehicule).getProprietaire().getId_personne());
+		pstmt.setLong(++i, ((Vehicule) vehicule).getProprietaire().getIdPersonne());
 	}
 	
 	// setter de la l'id_vehicule généré lors de l'insertion d'un nouveau vehicule dans la table vehicule
@@ -44,7 +44,7 @@ public class BuildInsertVehiculeRequest implements IBuildInsertObjectRequest{
 	@Override
 	public void setGeneratedKey(ResultSet rs, Object vehicule) throws SQLException {
 		if (rs.next()) {
-			((Vehicule) vehicule).setId_vehicule(rs.getLong(1));
+			((Vehicule) vehicule).setId(rs.getLong(1));
 		}
 	}
 

@@ -1,11 +1,9 @@
 package filrouge.gedesaft.model;
 
-import java.util.Date;
-
 public class Agent extends Personne {
 
 	private Long id;
-	private Date dateAffection;
+	private String grade;
 	
 	public Long getId() {
 		return id;
@@ -14,13 +12,17 @@ public class Agent extends Personne {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
-	public Date getDateAffection() {
-		return dateAffection;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
-	public void setDateAffection(Date dateAffection) {
-		this.dateAffection = dateAffection;
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
 
 }

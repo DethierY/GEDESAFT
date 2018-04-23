@@ -3,11 +3,20 @@ package filrouge.gedesaft.model;
 import java.util.Date;
 
 public class Personne {
-
+	
+	private Long idPersonne;
 	private String nom;
 	private String prenom;
 	private Date dateNaissance;
 	
+	public Long getIdPersonne() {
+		return idPersonne;
+	}
+
+	public void setIdPersonne(Long idPersonne) {
+		this.idPersonne = idPersonne;
+	}
+
 	public String getNom() {
 		return nom;
 	}

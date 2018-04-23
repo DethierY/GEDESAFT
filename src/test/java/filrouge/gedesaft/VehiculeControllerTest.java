@@ -36,7 +36,7 @@ public class VehiculeControllerTest {
     public void getVehiculeDetail() throws Exception {
 			
 		Vehicule vehicule = new Vehicule();
-		vehicule.setId_vehicule((long) 1);
+		vehicule.setId((long) 1);
 		vehicule.setType("camion");
 	
 		Mockito.when(vehiculeService.getVehiculeDetail((long) 1)).thenReturn(vehicule);

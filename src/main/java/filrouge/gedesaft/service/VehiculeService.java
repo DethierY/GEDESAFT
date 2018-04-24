@@ -22,6 +22,10 @@ public class VehiculeService {
 		return dao.getListVehicules();
 	}
 	
+	public Vehicule addVehicule(Vehicule vehicule) throws Exception {
+		return dao.insertVehicule(vehicule);
+	}
+	
 	
 	
 }

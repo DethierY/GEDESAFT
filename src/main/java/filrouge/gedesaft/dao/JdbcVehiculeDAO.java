@@ -3,6 +3,7 @@ package filrouge.gedesaft.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,39 +100,37 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		return personne;
 	}
 
-	
-//	@Override
-//	public Actor insertActor(Actor actor) throws Exception {
-//		PreparedStatement pstmt = null;
-//		Actor result = null;
-//		int i = 0;
-//		Timestamp updateTime = new Timestamp(System.currentTimeMillis());	
-//		actor.setId(new Long(0));
-//
-//		try {
-//			String sql = "INSERT INTO actor (actor_id, first_name, last_name, last_update) VALUES (?,?,?,?)";
-//			pstmt = datasource.getConnection().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-//			pstmt.setLong(++i, actor.getId());
-//			pstmt.setString(++i, actor.getFirstName());
-//			pstmt.setString(++i, actor.getLastName());
-//			pstmt.setTimestamp(++i, updateTime);		
-//			logSQL(pstmt);
-//			pstmt.executeUpdate();
-//			ResultSet rs = pstmt.getGeneratedKeys();
-//			if (rs.next()) {
-//				actor.setId(rs.getLong(1));
-//				actor.setLastUpdate(updateTime);			
-//				result = actor;
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			log.error("SQL Error !:" + pstmt.toString(), e);
-//			throw e;
-//		} finally {
-//			pstmt.close();
-//		}
-//		return result;
-//	}
+	@Override
+	public Vehicule insertVehicule(Vehicule vehicule) throws Exception {
+		PreparedStatement pstmt = null;
+		Vehicule result = null;
+		int i = 0;
+		vehicule.setId(new Long(0));
+		try {
+			String sql = "INSERT INTO vehicules (id, type, marque, modele, immatriculation, couleur) VALUES (?,?,?,?,?,?)";
+			pstmt = datasource.getConnection().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			pstmt.setLong(++i, vehicule.getId());
+			pstmt.setString(++i, vehicule.getType());
+			pstmt.setString(++i, vehicule.getMarque());
+			pstmt.setString(++i, vehicule.getModele());
+			pstmt.setString(++i, vehicule.getImmatriculation());
+			pstmt.setString(++i, vehicule.getCouleur());		
+			logSQL(pstmt);
+			pstmt.executeUpdate();
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if (rs.next()) {
+				vehicule.setId(rs.getLong(1));		
+				result = vehicule;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("SQL Error !:" + pstmt.toString(), e);
+			throw e;
+		} finally {
+			pstmt.close();
+		}
+		return result;
+	}
 //
 //
 //	@Override

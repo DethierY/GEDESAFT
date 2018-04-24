@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,26 +53,18 @@ public class VehiculeController {
 		return ResponseEntity.status(HttpStatus.OK).body(listVehicules);
 	}
 	
-	// Méthode permettant d'ajouter un nouveau vehicule dans la base de données
-	// Renvoie une erreur 400 si l'attribut type est null
-	// Renvoie une erreur 500 en cas d'échec de la requête
-	// Renvoie la réponse 201 en cas de succès de la requête
-	/**
-	 * @param vehicule
-	 * @return
-	 */
-//	@PostMapping(value ="/create")
-//	public ResponseEntity<?> addVehicule (@RequestBody Vehicule vehicule){
-//		String typeVehicule = vehicule.getType();
-//		if((typeVehicule == null) || (typeVehicule.isEmpty()))
-//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le type de véhicule n'est pas défini!");		
-//		try {
-//			vehiculeService.addVehicule(vehicule);
-//		} catch (Exception e) {
-//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-//		}
-//		
-//		return ResponseEntity.status(HttpStatus.CREATED).body(null);
-//	}
+	@PostMapping(value ="/create")
+	public ResponseEntity<?> addVehicule (@RequestBody Vehicule vehicule){
+		String typeVehicule = vehicule.getType();
+		if((typeVehicule == null) || (typeVehicule.isEmpty()))
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le type de véhicule n'est pas défini!");		
+		try {
+			vehiculeService.addVehicule(vehicule);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(null);
+	}
 	
 }

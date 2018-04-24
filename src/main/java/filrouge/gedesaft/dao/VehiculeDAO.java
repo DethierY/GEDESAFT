@@ -9,8 +9,8 @@ public interface VehiculeDAO {
 	public List<Vehicule> getListVehicules() throws Exception;
 
 	public Vehicule getVehicule(Long id) throws Exception;
-//
-//	public Vehicule insertVehicule(Vehicule actor) throws Exception;
+
+	public Vehicule insertVehicule(Vehicule vehicule) throws Exception;
 //
 //	public Vehicule updateVehicule(Vehicule actor) throws Exception;
 //	

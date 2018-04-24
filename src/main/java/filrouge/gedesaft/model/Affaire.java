@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Affaire {
 	
-	private Long id_affaire;
+	private Long id;
 	private Date dateOuverture;
-	private String nom;
+	private String dossier;
 	private String lieu;
 	private List<VehiculeImplique> listVehiculeImplique;
 	private List<ArmeImpliquee> listArmeImpliquee;
@@ -20,12 +20,12 @@ public class Affaire {
 		super();
 	}
 
-	public Long getId_affaire() {
-		return id_affaire;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_affaire(Long id_affaire) {
-		this.id_affaire = id_affaire;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Date getDateOuverture() {
@@ -36,12 +36,12 @@ public class Affaire {
 		this.dateOuverture = dateOuverture;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getDossier() {
+		return dossier;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setDossier(String dossier) {
+		this.dossier = dossier;
 	}
 
 	public String getLieu() {

@@ -3,7 +3,6 @@ package filrouge.gedesaft.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import filrouge.gedesaft.model.Affaire;
 import filrouge.gedesaft.model.Personne;
 import filrouge.gedesaft.model.Vehicule;
 
@@ -162,7 +162,6 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		return result;
 	}
 
-
 	@Override
 	public void deleteVehicule(Long id) throws Exception {
 		PreparedStatement pstmt = null;
@@ -182,6 +181,36 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		} finally {
 			pstmt.close();
 		}
+	}
+	
+	@Override
+	public List<Affaire> getAffairesOfVehicule(Long id) throws Exception {
+		Affaire affaire;;
+		PreparedStatement pstmt = null;
+		ResultSet rs;
+		String sql;
+		ArrayList<Affaire> aLlistOfAffaire = new ArrayList<Affaire>();
+		try {
+			sql = "SELECT * FROM affaires"
+				+ " JOIN vehiculesimpliques ON affaires.id = vehiculesImpliques.affaires_id"
+				+ " JOIN vehicules ON vehicules_id = vehicules.id"
+				+ " WHERE vehicules.id = ?";
+			pstmt = datasource.getConnection().prepareStatement(sql);
+			pstmt.setLong(1, id);
+			logSQL(pstmt);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				affaire = getAffaireFromResultSet(rs);
+				aLlistOfAffaire.add(affaire);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("SQL Error !:" + pstmt.toString(), e);
+			throw e;
+		} finally {
+			pstmt.close();
+		}
+		return aLlistOfAffaire;
 	}
 
 	private Vehicule getVehiculeFromResultSet(ResultSet rs) throws Exception {
@@ -203,6 +232,15 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		personne.setPrenom(rs.getString("prenom"));
 		personne.setDateNaissance(rs.getDate("DateNaissance"));
 		return personne;
+	}
+	
+	private Affaire getAffaireFromResultSet(ResultSet rs) throws SQLException {
+		Affaire affaire = new Affaire();
+		affaire.setId(rs.getLong("id"));
+		affaire.setDossier(rs.getString("dossier"));
+		affaire.setLieu(rs.getString("lieu"));
+		affaire.setDateOuverture(rs.getDate("DateOuverture"));
+		return affaire;
 	}
 
 	private void logSQL(PreparedStatement pstmt) {

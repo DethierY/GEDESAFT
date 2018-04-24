@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import filrouge.gedesaft.model.Affaire;
 import filrouge.gedesaft.model.Vehicule;
 import filrouge.gedesaft.service.VehiculeService;
 
@@ -34,7 +35,7 @@ public class VehiculeController {
 	 * @return
 	 */
 	@GetMapping(value= "/{id}")
-	public ResponseEntity<?> getVehiculeDetail(@PathVariable Long id) {
+	public ResponseEntity<?> getVehiculeDetails(@PathVariable Long id) {
 		Vehicule vehicule = null;
 		try {
 			vehicule = vehiculeService.getVehiculeDetail(id);
@@ -70,7 +71,7 @@ public class VehiculeController {
 	}
 	
 	@PutMapping(value = "/update/{id}")
-	public ResponseEntity<?> updateActor(@RequestBody Vehicule vehicule,@PathVariable Long id) throws Exception {
+	public ResponseEntity<?> updateVehicule(@RequestBody Vehicule vehicule,@PathVariable Long id) throws Exception {
 		Vehicule result = null;
 		String type = vehicule.getType();
 		if((type == null) || (type.isEmpty()))
@@ -84,12 +85,23 @@ public class VehiculeController {
 	}
 	
 	@DeleteMapping(value = "/delete/{id}")
-	public ResponseEntity<?> deleteActor(@PathVariable Long id){
+	public ResponseEntity<?> deleteVehicule(@PathVariable Long id){
 		try {
 		vehiculeService.deleteVehicule(id);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(null);
+	}
+	
+	@GetMapping(value= "/{id}/affaires")
+	public ResponseEntity<?> getAllAffairesOfVehicule(@PathVariable Long id) {
+		List<Affaire> listAffaires = null;
+		try {
+			listAffaires = vehiculeService.getAllAffairesOfVehicule(id);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(listAffaires);
 	}
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import filrouge.gedesaft.dao.VehiculeDAO;
+import filrouge.gedesaft.model.Affaire;
 import filrouge.gedesaft.model.Vehicule;
 
 @Service
@@ -32,5 +33,9 @@ public class VehiculeService {
 	
 	public void deleteVehicule(Long id) throws Exception {
 		dao.deleteVehicule(id);
+	}
+	
+	public List<Affaire> getAllAffairesOfVehicule (Long id) throws Exception {
+		return dao.getAffairesOfVehicule(id);
 	}
 }

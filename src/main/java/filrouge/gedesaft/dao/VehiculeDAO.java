@@ -2,6 +2,7 @@ package filrouge.gedesaft.dao;
 
 import java.util.List;
 
+import filrouge.gedesaft.model.Affaire;
 import filrouge.gedesaft.model.Vehicule;
 
 public interface VehiculeDAO {
@@ -15,5 +16,7 @@ public interface VehiculeDAO {
 	public Vehicule updateVehicule(Vehicule actor) throws Exception;
 	
 	public void deleteVehicule(Long id) throws Exception;
+	
+	public List<Affaire> getAffairesOfVehicule(Long id) throws Exception;
 
 }

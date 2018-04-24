@@ -5,9 +5,9 @@ import java.sql.Date;
 public class Personne {
 	
 	private Long idPersonne;
-	private String nom;
-	private String prenom;
-	private Date dateNaissance;
+	protected String nom;
+	protected String prenom;
+	protected Date dateNaissance;
 	
 	public Long getIdPersonne() {
 		return idPersonne;

@@ -9,10 +9,6 @@ public class Vehicule {
 	private String immatriculation;
 	private String couleur;
 	private Personne proprietaire;
-	
-	public Vehicule () {
-		super();
-	}
 
 	public Long getId() {
 		return id;

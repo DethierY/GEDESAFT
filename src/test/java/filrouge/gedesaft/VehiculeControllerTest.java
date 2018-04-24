@@ -14,8 +14,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import filrouge.gedesaft.controller.VehiculeController;
-import filrouge.gedesaft.dao.DaoVehicule;
-import filrouge.gedesaft.dao.DataDaoImpl;
+import filrouge.gedesaft.dao.JdbcVehiculeDAO;
 import filrouge.gedesaft.model.Vehicule;
 import filrouge.gedesaft.service.VehiculeService;
 
@@ -30,7 +29,7 @@ public class VehiculeControllerTest {
 	private VehiculeService vehiculeService;
 	
 	@MockBean
-	private DataDaoImpl dataDaoImpl;
+	private JdbcVehiculeDAO dataDaoImpl;
 	
 	@Test
     public void getVehiculeDetail() throws Exception {

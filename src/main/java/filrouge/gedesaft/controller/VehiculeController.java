@@ -7,12 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import filrouge.gedesaft.model.Representation;
 import filrouge.gedesaft.model.Vehicule;
 import filrouge.gedesaft.service.VehiculeService;
 
@@ -20,31 +17,10 @@ import filrouge.gedesaft.service.VehiculeService;
 @RestController
 @RequestMapping("/vehicule")
 public class VehiculeController {
-
-	// id de l'utilisateur entré en dur pour les tests, en attendant que cet id soit effectivement fournit par le client
-	Long id_utilisateur = (long) 6;
 	
 	// injection d'une instance de la classe VehiculeService
 	@Autowired
 	private VehiculeService vehiculeService;
-
-	// Méthode permettant d'obtenir la liste des représentations de véhicules (couple id_vehicule et type)
-	// impliqués dans les affaires auxquelles l'utilsateur connecté est affecté
-	// Renvoie une erreur 404 en cas d'échec de la requête
-	// Renvoie la réponse 200 en cas de succès de la requête
-	/**
-	 * @return
-	 */
-	@GetMapping(value = "/list")
-	public ResponseEntity<?> getListRepresentationVehiculeParDefaut(){
-		List<Representation> listRepresentation = null; 
-		try {
-			listRepresentation = vehiculeService.getListRepresentationVehiculeParDefaut(id_utilisateur);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}
-		return ResponseEntity.status(HttpStatus.OK).body(listRepresentation);
-	}
 
 	// Méthode permettant d'obtenir les données d'un véhicule
 	// Renvoie une erreur 404 en cas d'échec de la requête
@@ -53,7 +29,7 @@ public class VehiculeController {
 	 * @param id
 	 * @return
 	 */
-	@GetMapping(value= "{id}")
+	@GetMapping(value= "/{id}")
 	public ResponseEntity<?> getVehiculeDetail(@PathVariable Long id) {
 		Vehicule vehicule = null;
 		try {
@@ -64,40 +40,15 @@ public class VehiculeController {
 		return ResponseEntity.status(HttpStatus.OK).body(vehicule);
 	}
 	
-	// Méthode permettant d'obtenir la représentation du propriétaire (couple id_personne, nom) d'un véhicule
-	// Renvoie une erreur 404 en cas d'échec de la requête
-	// Renvoie la réponse 200 en cas de succès de la requête
-	/**
-	 * @param id
-	 * @return
-	 */
-	@GetMapping(value="{id}/proprietaire")
-	public ResponseEntity<?> getProprietaireVehicule(@PathVariable Long id) {
-		Representation proprietaire = null;
+	@GetMapping(value= "/list")
+	public ResponseEntity<?> getAllVehicule() {
+		List<Vehicule> listVehicules = null;
 		try {
-			proprietaire = vehiculeService.getRepresentationProprietaireVehicule(id);
+			listVehicules = vehiculeService.getAllVehicules();
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(proprietaire);			
-	}
-
-	// Méthode permettant d'obtenir la liste des représentations des affaires (couple id_affaire, dossier) dans lesquelles un véhicule est impliqué
-	// Renvoie une erreur 404 en cas d'échec de la requête
-	// Renvoie la réponse 200 en cas de succès de la requête
-	/**
-	 * @param id
-	 * @return
-	 */
-	@GetMapping(value="{id}/affaires")
-	public ResponseEntity<?> getAffairesImpliquantVehicule(@PathVariable Long id) {
-		List<Representation> affaires;
-		try {
-			affaires = vehiculeService.getRepresentationAffairesImpliquantVehicule(id);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}
-		return ResponseEntity.status(HttpStatus.OK).body(affaires);			
+		return ResponseEntity.status(HttpStatus.OK).body(listVehicules);
 	}
 	
 	// Méthode permettant d'ajouter un nouveau vehicule dans la base de données
@@ -108,18 +59,18 @@ public class VehiculeController {
 	 * @param vehicule
 	 * @return
 	 */
-	@PostMapping(value ="/create")
-	public ResponseEntity<?> addVehicule (@RequestBody Vehicule vehicule){
-		String typeVehicule = vehicule.getType();
-		if((typeVehicule == null) || (typeVehicule.isEmpty()))
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le type de véhicule n'est pas défini!");		
-		try {
-			vehiculeService.addVehicule(vehicule);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-		}
-		
-		return ResponseEntity.status(HttpStatus.CREATED).body(null);
-	}
+//	@PostMapping(value ="/create")
+//	public ResponseEntity<?> addVehicule (@RequestBody Vehicule vehicule){
+//		String typeVehicule = vehicule.getType();
+//		if((typeVehicule == null) || (typeVehicule.isEmpty()))
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le type de véhicule n'est pas défini!");		
+//		try {
+//			vehiculeService.addVehicule(vehicule);
+//		} catch (Exception e) {
+//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+//		}
+//		
+//		return ResponseEntity.status(HttpStatus.CREATED).body(null);
+//	}
 	
 }

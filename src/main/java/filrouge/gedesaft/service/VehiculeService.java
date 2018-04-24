@@ -26,6 +26,10 @@ public class VehiculeService {
 		return dao.insertVehicule(vehicule);
 	}
 	
+	public Vehicule updateActor(Long id, Vehicule vehicule) throws Exception {
+		return dao.updateVehicule(vehicule);
+	}
+	
 	public void deleteVehicule(Long id) throws Exception {
 		dao.deleteVehicule(id);
 	}

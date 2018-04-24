@@ -131,42 +131,41 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		}
 		return result;
 	}
-//
-//
-//	@Override
-//	public Actor updateActor(Actor actor) throws Exception {
-//		Actor result = null;
-//		PreparedStatement pstmt = null;
-//		int i = 0;
-//		Timestamp updateTime = new Timestamp(System.currentTimeMillis());				
-//		try {
-//			String sql = "UPDATE actor SET first_name = ?, last_name = ?, last_update = ? WHERE actor_id = ?";
-//			pstmt = datasource.getConnection().prepareStatement(sql);
-//			pstmt.setString(++i, actor.getFirstName());
-//			pstmt.setString(++i, actor.getLastName());
-//			pstmt.setTimestamp(++i, updateTime);
-//			pstmt.setLong(++i, actor.getId());			
-//			logSQL(pstmt);
-//			int resultCount = pstmt.executeUpdate();
-//			if(resultCount != 1)
-//				throw new Exception("Actor not found !");		
-//			actor.setLastUpdate(updateTime);
-//			result = actor;
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			log.error("SQL Error !:" + pstmt.toString(), e);
-//			throw e;
-//		} finally {
-//			pstmt.close();
-//		}
-//		return result;
-//	}
-//
-//
+
+	@Override
+	public Vehicule updateVehicule(Vehicule vehicule) throws Exception {
+		Vehicule result = null;
+		PreparedStatement pstmt = null;
+		int i = 0;				
+		try {
+			String sql = "UPDATE vehicules SET type= ?, marque= ?, modele= ?, immatriculation= ?, couleur=?, personnes_idPersonne= ? WHERE id = ?";
+			pstmt = datasource.getConnection().prepareStatement(sql);		
+			pstmt.setString(++i, vehicule.getType());
+			pstmt.setString(++i, vehicule.getMarque());
+			pstmt.setString(++i, vehicule.getModele());
+			pstmt.setString(++i, vehicule.getImmatriculation());
+			pstmt.setString(++i, vehicule.getCouleur());
+			pstmt.setLong(++i, vehicule.getProprietaire().getIdPersonne());
+			pstmt.setLong(++i, vehicule.getId());
+			logSQL(pstmt);
+			int resultCount = pstmt.executeUpdate();
+			if(resultCount != 1)
+				throw new Exception("vehicule not found !");		
+			result = vehicule;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("SQL Error !:" + pstmt.toString(), e);
+			throw e;
+		} finally {
+			pstmt.close();
+		}
+		return result;
+	}
+
+
 	@Override
 	public void deleteVehicule(Long id) throws Exception {
 		PreparedStatement pstmt = null;
-		
 		try {
 			String sql = "DELETE FROM vehicules WHERE id = ?";
 			pstmt = datasource.getConnection().prepareStatement(sql);

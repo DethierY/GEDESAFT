@@ -11,8 +11,8 @@ public interface VehiculeDAO {
 	public Vehicule getVehicule(Long id) throws Exception;
 
 	public Vehicule insertVehicule(Vehicule vehicule) throws Exception;
-//
-//	public Vehicule updateVehicule(Vehicule actor) throws Exception;
+
+	public Vehicule updateVehicule(Vehicule actor) throws Exception;
 	
 	public void deleteVehicule(Long id) throws Exception;
 

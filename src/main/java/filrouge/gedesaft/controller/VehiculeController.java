@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import filrouge.gedesaft.model.Vehicule;
@@ -69,7 +69,21 @@ public class VehiculeController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(null);
 	}
 	
-	@DeleteMapping(value = "/{id}/delete")
+	@PutMapping(value = "/update/{id}")
+	public ResponseEntity<?> updateActor(@RequestBody Vehicule vehicule,@PathVariable Long id) throws Exception {
+		Vehicule result = null;
+		String type = vehicule.getType();
+		if((type == null) || (type.isEmpty()))
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le type de véhicule n'est pas renseigné !");
+		try {
+			result = vehiculeService.updateActor(id, vehicule);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(result);
+	}
+	
+	@DeleteMapping(value = "/delete/{id}")
 	public ResponseEntity<?> deleteActor(@PathVariable Long id){
 		try {
 		vehiculeService.deleteVehicule(id);

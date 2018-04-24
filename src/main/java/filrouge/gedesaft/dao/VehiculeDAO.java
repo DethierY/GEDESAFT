@@ -13,7 +13,7 @@ public interface VehiculeDAO {
 
 	public Vehicule insertVehicule(Vehicule vehicule) throws Exception;
 
-	public Vehicule updateVehicule(Vehicule actor) throws Exception;
+	public Vehicule updateVehicule(Vehicule vehicule) throws Exception;
 	
 	public void deleteVehicule(Long id) throws Exception;
 	

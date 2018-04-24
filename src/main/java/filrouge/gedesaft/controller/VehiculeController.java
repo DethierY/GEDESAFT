@@ -77,7 +77,7 @@ public class VehiculeController {
 		if((type == null) || (type.isEmpty()))
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le type de véhicule n'est pas renseigné !");
 		try {
-			result = vehiculeService.updateActor(id, vehicule);
+			result = vehiculeService.updateVehicule(id, vehicule);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}

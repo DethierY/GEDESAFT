@@ -26,6 +26,7 @@ public class VehiculeService {
 		return dao.insertVehicule(vehicule);
 	}
 	
-	
-	
+	public void deleteVehicule(Long id) throws Exception {
+		dao.deleteVehicule(id);
+	}
 }

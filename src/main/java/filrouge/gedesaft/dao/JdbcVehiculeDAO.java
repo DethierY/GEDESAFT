@@ -163,29 +163,28 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 //	}
 //
 //
-//	@Override
-//	public void deleteActor(Long id) throws Exception {
-//		PreparedStatement pstmt = null;
-//		
-//		try {
-//			String sql = "DELETE FROM actor WHERE actor_id = ?";
-//			pstmt = datasource.getConnection().prepareStatement(sql);
-//			pstmt.setLong(1, id);
-//			logSQL(pstmt);		
-//			int result = pstmt.executeUpdate();
-//			if(result != 1)
-//				throw new Exception("Actor not found !");		
-//			System.out.println("Result : " + result);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			log.error("SQL Error !:" + pstmt.toString(), e);
-//			throw e;
-//		} finally {
-//			pstmt.close();
-//		}
-//	}
-//
-//
+	@Override
+	public void deleteVehicule(Long id) throws Exception {
+		PreparedStatement pstmt = null;
+		
+		try {
+			String sql = "DELETE FROM vehicules WHERE id = ?";
+			pstmt = datasource.getConnection().prepareStatement(sql);
+			pstmt.setLong(1, id);
+			logSQL(pstmt);		
+			int result = pstmt.executeUpdate();
+			if(result != 1)
+				throw new Exception("Vehicule not found !");		
+			System.out.println("Result : " + result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error("SQL Error !:" + pstmt.toString(), e);
+			throw e;
+		} finally {
+			pstmt.close();
+		}
+	}
+
 	private Vehicule getVehiculeFromResultSet(ResultSet rs) throws Exception {
 		Vehicule vehicule = new Vehicule();
 		vehicule.setId(rs.getLong("id"));

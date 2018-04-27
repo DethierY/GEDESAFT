@@ -26,9 +26,10 @@ public class VehiculeService {
 	}
 	
 	public Vehicule addVehicule(Vehicule vehicule) throws Exception {
-		Pattern p = Pattern.compile("^[A-Z]{1,3}-[0-9]{1,3}-[A-Z]{1,3}$");
-		
-		return dao.insertVehicule(vehicule);
+		if (verifierImmatriculation(vehicule.getImmatriculation())) {
+			return dao.updateVehicule(vehicule);
+		};
+		return null;
 	}
 	
 	public Vehicule updateVehicule(Long id, Vehicule vehicule) throws Exception {
@@ -49,11 +50,7 @@ public class VehiculeService {
 	private boolean verifierImmatriculation(String immatriculation) {
 		Pattern p = Pattern.compile("^[A-Z]{1,3}-[0-9]{1,3}-[A-Z]{1,3}$");
 		Matcher m = p.matcher(immatriculation);
-		if (m.find()) {
-			return true;
-		} else {
-			return false;
-		}
-		
+		System.out.println("résultat verifierImmatriculation: " + m.find());
+		return m.find();
 	}
 }

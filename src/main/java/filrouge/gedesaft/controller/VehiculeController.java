@@ -62,7 +62,6 @@ public class VehiculeController {
 	
 	@PostMapping(value ="/create")
 	public ResponseEntity<?> addVehicule (@RequestBody Vehicule vehicule){
-		System.out.println("addVehicule");
 		Vehicule createdVehicule;
 		String typeVehicule = vehicule.getType();
 		if((typeVehicule == null) || (typeVehicule.isEmpty()))
@@ -72,13 +71,14 @@ public class VehiculeController {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
-		
+		if (createdVehicule == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Immatriculation non conforme");
+		}
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdVehicule);
 	}
 	
 	@PutMapping(value = "/update/{id}")
 	public ResponseEntity<?> updateVehicule(@RequestBody Vehicule vehicule,@PathVariable Long id) throws Exception {
-		System.out.println("updateVehicule, id: " + id);
 		Vehicule result = null;
 		String type = vehicule.getType();
 		if((type == null) || (type.isEmpty()))

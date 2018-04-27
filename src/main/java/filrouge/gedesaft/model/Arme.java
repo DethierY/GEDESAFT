@@ -2,9 +2,9 @@ package filrouge.gedesaft.model;
 
 public class Arme {
 	
-	private Long id_arme;
+	private Long id;
 	private String type;
-	private Long numeroSerie;
+	private Long noSerie;
 	private String modele;
 	private String calibre;
 	private Personne proprietaire;
@@ -13,13 +13,19 @@ public class Arme {
 		super();
 	}
 
-	public Long getId_arme() {
-		return id_arme;
+	
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_arme(Long id_arme) {
-		this.id_arme = id_arme;
+
+
+	public void setId(Long id) {
+		this.id = id;
 	}
+
+
 
 	public String getType() {
 		return type;
@@ -29,12 +35,12 @@ public class Arme {
 		this.type = type;
 	}
 
-	public Long getNumeroSerie() {
-		return numeroSerie;
+	public Long getNoSerie() {
+		return noSerie;
 	}
 
-	public void setNumeroSerie(Long numeroSerie) {
-		this.numeroSerie = numeroSerie;
+	public void setNoSerie(Long noSerie) {
+		this.noSerie = noSerie;
 	}
 
 	public String getModele() {

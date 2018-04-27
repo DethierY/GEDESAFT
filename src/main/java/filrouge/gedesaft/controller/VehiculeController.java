@@ -63,9 +63,13 @@ public class VehiculeController {
 	@PostMapping(value ="/create")
 	public ResponseEntity<?> addVehicule (@RequestBody Vehicule vehicule){
 		Vehicule createdVehicule;
-		String typeVehicule = vehicule.getType();
-		if((typeVehicule == null) || (typeVehicule.isEmpty()))
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le type de véhicule n'est pas défini!");		
+		String type = vehicule.getType();
+		String immatriculation = vehicule.getImmatriculation();
+		if((type == null) || (type.isEmpty())) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le type de véhicule n'est pas défini!");
+		} else if ((immatriculation == null) || (immatriculation.isEmpty())) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("L'immatriculation du véhicule n'est pas renseignée");
+		}
 		try {
 			createdVehicule = vehiculeService.addVehicule(vehicule);
 		} catch (Exception e) {
@@ -81,8 +85,12 @@ public class VehiculeController {
 	public ResponseEntity<?> updateVehicule(@RequestBody Vehicule vehicule,@PathVariable Long id) throws Exception {
 		Vehicule result = null;
 		String type = vehicule.getType();
-		if((type == null) || (type.isEmpty()))
+		String immatriculation = vehicule.getImmatriculation();
+		if((type == null) || (type.isEmpty())) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le type de véhicule n'est pas renseigné !");
+		} else if ((immatriculation == null) || (immatriculation.isEmpty())) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("L'immatriculation du véhicule n'est pas renseignée");
+		}
 		try {
 			result = vehiculeService.updateVehicule(id, vehicule);
 		} catch (Exception e) {

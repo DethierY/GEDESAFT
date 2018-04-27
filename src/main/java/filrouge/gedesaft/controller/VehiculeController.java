@@ -20,7 +20,7 @@ import filrouge.gedesaft.model.Vehicule;
 import filrouge.gedesaft.service.VehiculeService;
 
 // Classe gérant la liaison entre la base données, le serveur (cette application Spring Boot) et le client (application angular)
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 36000)
 @RestController
 @RequestMapping("/vehicule")
 public class VehiculeController {
@@ -38,6 +38,7 @@ public class VehiculeController {
 	 */
 	@GetMapping(value= "/{id}")
 	public ResponseEntity<?> getVehiculeDetails(@PathVariable Long id) {
+		System.out.println("getVehicule, id: " + id);
 		Vehicule vehicule = null;
 		try {
 			vehicule = vehiculeService.getVehiculeDetail(id);
@@ -49,6 +50,7 @@ public class VehiculeController {
 	
 	@GetMapping(value= "/list")
 	public ResponseEntity<?> getAllVehicule() {
+		System.out.println("getAllVehicule");
 		List<Vehicule> listVehicules = null;
 		try {
 			listVehicules = vehiculeService.getAllVehicules();
@@ -60,20 +62,23 @@ public class VehiculeController {
 	
 	@PostMapping(value ="/create")
 	public ResponseEntity<?> addVehicule (@RequestBody Vehicule vehicule){
+		System.out.println("addVehicule");
+		Vehicule createdVehicule;
 		String typeVehicule = vehicule.getType();
 		if((typeVehicule == null) || (typeVehicule.isEmpty()))
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le type de véhicule n'est pas défini!");		
 		try {
-			vehiculeService.addVehicule(vehicule);
+			createdVehicule = vehiculeService.addVehicule(vehicule);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 		
-		return ResponseEntity.status(HttpStatus.CREATED).body(null);
+		return ResponseEntity.status(HttpStatus.CREATED).body(createdVehicule);
 	}
 	
 	@PutMapping(value = "/update/{id}")
 	public ResponseEntity<?> updateVehicule(@RequestBody Vehicule vehicule,@PathVariable Long id) throws Exception {
+		System.out.println("updateVehicule, id: " + id);
 		Vehicule result = null;
 		String type = vehicule.getType();
 		if((type == null) || (type.isEmpty()))
@@ -83,11 +88,15 @@ public class VehiculeController {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
+		if (result == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Immatriculation non conforme");
+		}
 		return ResponseEntity.status(HttpStatus.OK).body(result);
 	}
 	
 	@DeleteMapping(value = "/delete/{id}")
 	public ResponseEntity<?> deleteVehicule(@PathVariable Long id){
+		System.out.println("deleteVehicule, id: " + id);
 		try {
 		vehiculeService.deleteVehicule(id);
 		} catch (Exception e) {
@@ -98,6 +107,7 @@ public class VehiculeController {
 	
 	@GetMapping(value= "/{id}/affaires")
 	public ResponseEntity<?> getAllAffairesOfVehicule(@PathVariable Long id) {
+		System.out.println("getAllAffairesOfvehicule, id: " + id);
 		List<Affaire> listAffaires = null;
 		try {
 			listAffaires = vehiculeService.getAllAffairesOfVehicule(id);

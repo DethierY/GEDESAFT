@@ -1,5 +1,6 @@
 package filrouge.gedesaft.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,6 +32,7 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 
 	@Override
 	public List<Vehicule> getListVehicules() throws Exception {
+		Connection con = datasource.getConnection();
 		Vehicule vehicule;
 		PreparedStatement pstmt = null;
 		ResultSet rs;
@@ -38,7 +40,7 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		ArrayList<Vehicule> aLlistOfVehicule = new ArrayList<Vehicule>();
 		try {
 			sql = "SELECT * FROM vehicules ";
-			pstmt = datasource.getConnection().prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			logSQL(pstmt);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -51,18 +53,20 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 			throw e;
 		} finally {
 			pstmt.close();
+			con.close();
 		}
 		return aLlistOfVehicule;
 	}
 
 	@Override
 	public Vehicule getVehicule (Long id) throws Exception {
+		Connection con = datasource.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs;
 		Vehicule vehicule = null;
 		try {
 			String sql = "SELECT * FROM vehicules WHERE id= ?";
-			pstmt = datasource.getConnection().prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, id);
 			logSQL(pstmt);
 			rs = pstmt.executeQuery();
@@ -74,41 +78,49 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 			throw e;
 		} finally {
 			pstmt.close();
+			con.close();
 		}
 		return vehicule;
 	}
 	
 	private Personne getPersonne (Long id) throws Exception {
+		Connection con = datasource.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs;
 		Personne personne = null;
-		try {
-			String sql = "SELECT * FROM personnes WHERE idPersonne= ?";
-			pstmt = datasource.getConnection().prepareStatement(sql);
-			pstmt.setLong(1, id);
-			logSQL(pstmt);
-			rs = pstmt.executeQuery();
-			if (rs.next())
-				personne = getPersonneFromResultSet(rs);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			log.error("SQL Error !:" + pstmt.toString(), e);
-			throw e;
-		} finally {
-			pstmt.close();
+		if (id == null) {
+			return personne;
+		} else {
+			try {
+				String sql = "SELECT * FROM personnes WHERE idPersonne= ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setLong(1, id);
+				logSQL(pstmt);
+				rs = pstmt.executeQuery();
+				if (rs.next())
+					personne = getPersonneFromResultSet(rs);
+			} catch (SQLException e) {
+				e.printStackTrace();
+				log.error("SQL Error !:" + pstmt.toString(), e);
+				throw e;
+			} finally {
+				pstmt.close();
+				con.close();
+			}
+			return personne;
 		}
-		return personne;
 	}
 
 	@Override
 	public Vehicule insertVehicule(Vehicule vehicule) throws Exception {
+		Connection con = datasource.getConnection();
 		PreparedStatement pstmt = null;
 		Vehicule result = null;
 		int i = 0;
 		vehicule.setId(new Long(0));
 		try {
 			String sql = "INSERT INTO vehicules (id, type, marque, modele, immatriculation, couleur) VALUES (?,?,?,?,?,?)";
-			pstmt = datasource.getConnection().prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			pstmt = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			pstmt.setLong(++i, vehicule.getId());
 			pstmt.setString(++i, vehicule.getType());
 			pstmt.setString(++i, vehicule.getMarque());
@@ -128,18 +140,20 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 			throw e;
 		} finally {
 			pstmt.close();
+			con.close();
 		}
 		return result;
 	}
 
 	@Override
 	public Vehicule updateVehicule(Vehicule vehicule) throws Exception {
+		Connection con = datasource.getConnection();
 		Vehicule result = null;
 		PreparedStatement pstmt = null;
 		int i = 0;				
 		try {
 			String sql = "UPDATE vehicules SET type= ?, marque= ?, modele= ?, immatriculation= ?, couleur=?, personnes_idPersonne= ? WHERE id = ?";
-			pstmt = datasource.getConnection().prepareStatement(sql);		
+			pstmt = con.prepareStatement(sql);		
 			pstmt.setString(++i, vehicule.getType());
 			pstmt.setString(++i, vehicule.getMarque());
 			pstmt.setString(++i, vehicule.getModele());
@@ -158,34 +172,61 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 			throw e;
 		} finally {
 			pstmt.close();
+			con.close();
 		}
 		return result;
 	}
 
 	@Override
 	public void deleteVehicule(Long id) throws Exception {
-		PreparedStatement pstmt = null;
+		Connection con = datasource.getConnection();
+		con.setAutoCommit(false);
+		PreparedStatement delVehicule = null;
+		PreparedStatement delVehiculeImplique = null;
 		try {
-			String sql = "DELETE FROM vehicules WHERE id = ?";
-			pstmt = datasource.getConnection().prepareStatement(sql);
-			pstmt.setLong(1, id);
-			logSQL(pstmt);		
-			int result = pstmt.executeUpdate();
-			if(result != 1)
+			String sql_vi = "DELETE FROM vehiculesImpliques WHERE vehicules_id = ?";
+			String sql_v = "DELETE FROM vehicules WHERE id = ?";
+			delVehiculeImplique = con.prepareStatement(sql_vi);
+			delVehiculeImplique.setLong(1, id);
+			delVehicule = con.prepareStatement(sql_v);
+			delVehicule.setLong(1, id);
+			logSQL(delVehiculeImplique);
+			logSQL(delVehicule);		
+			int result_vi = delVehiculeImplique.executeUpdate();
+			int result_v = delVehicule.executeUpdate();
+			con.commit();
+			if(result_vi != 1)
+				throw new Exception("Vehicule Implique not found !");
+			if(result_v != 1)
 				throw new Exception("Vehicule not found !");		
-			System.out.println("Result : " + result);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			log.error("SQL Error !:" + pstmt.toString(), e);
+			if (con != null) {
+				try {
+					System.err.print("transaction is being rolled back");
+					con.rollback();
+				} catch (SQLException excep){
+					log.error("SQL transaction Error !:" + delVehiculeImplique.toString()
+						+ " and " + delVehicule.toString(), e);
+				}
+			}
 			throw e;
 		} finally {
-			pstmt.close();
+			if (delVehiculeImplique != null) {
+				delVehiculeImplique.close();
+			}
+			if (delVehicule != null) {
+				delVehicule.close();
+			}
+			con.setAutoCommit(true);
+			con.close();
 		}
 	}
 	
 	@Override
 	public List<Affaire> getAffairesOfVehicule(Long id) throws Exception {
-		Affaire affaire;;
+		Connection con = datasource.getConnection();
+		Affaire affaire;
 		PreparedStatement pstmt = null;
 		ResultSet rs;
 		String sql;
@@ -195,7 +236,7 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 				+ " JOIN vehiculesimpliques ON affaires.id = vehiculesImpliques.affaires_id"
 				+ " JOIN vehicules ON vehicules_id = vehicules.id"
 				+ " WHERE vehicules.id = ?";
-			pstmt = datasource.getConnection().prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setLong(1, id);
 			logSQL(pstmt);
 			rs = pstmt.executeQuery();
@@ -209,6 +250,7 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 			throw e;
 		} finally {
 			pstmt.close();
+			con.close();
 		}
 		return aLlistOfAffaire;
 	}

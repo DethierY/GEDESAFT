@@ -192,7 +192,7 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 			delVehicule.setLong(1, id);
 			logSQL(delVehiculeImplique);
 			logSQL(delVehicule);		
-			int result_vi = delVehiculeImplique.executeUpdate();
+			int result_vi = delVehiculeImplique.executeUpdate();			
 			int result_v = delVehicule.executeUpdate();
 			con.commit();
 			if(result_vi != 1)

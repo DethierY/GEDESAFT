@@ -144,88 +144,7 @@ Depuis Workbench :
 	sélectionner le fichier .sql correspondant pour l'importer dans la base.
         
         
-## Développer une interface utilisateur
-
-
-### Réaliser une interface graphique
-Pour réaliser l'interface graphique nous avons utilisé  
-L'IDE [Visual Studio Code](https://code.visualstudio.com/)  
-Le framework Angular 5  
-Les langages HTML5 CSS3 et TypeScript (sur-couche de JavaScript)  
-        
-### Appliquer une charte graphique
-Codes couleur principaux utilisés :
-
-	rgb(252, 204, 0)  
-	rgb(46, 156, 211)  
-	
-
-        
-### Analyser une maquette graphique et identifier les différentes parties d'un écran (zoning)
-Afin de réaliser la mise en place des différents écrans, nous avons utilisé les mockups réalisés à l'aide de Balsamiq
-        
-        
-### Faire un menu
-Le menu a été réalisé grâce aux composants [Angular Material](https://material.angular.io/)
-        
-        
-### Enchainer les écrans
-Nous enchaînons les écrans grâce aux chemins d'accès défini dans le routing-module d'Angular  
-Extrait du fichier :  
-
-	const routes: Routes = [
-	{path: '', redirectTo: '/accueil', pathMatch: 'full' },  
-	{path: 'accueil', component: AccueilComponent, data: { title: 'Component acceuil' }},  
-	{path: 'vehicules', component: VehiculesComponent, data: { title: 'Component vehicule' }, children: [  
-	{path: 'create', component: VAjoutComponent, data: { title: 'Component ajoutVehicule' }},  
-	{path: 'detail/:id', component: VDetailsComponent, data: { title: 'Component detailVehicule' }},  
-	]},
- 
-
-        
-### Connaitre des composants graphiques qui permettent de créer un écran
-
-        
-        
-### Faire un formulaire de saisie
-Exemple :  
-
-	<form #formCreate (ngSubmit)="onSubmit(formCreate)" class="">  
-                   
-                     
-                    <mat-form-field>  
-                      <input matInput type="text" name="dossier" placeholder="dossier"   
-                      [(ngModel)]="affaire.dossier">   
-                    </mat-form-field>  
-                
-              
-                    <mat-form-field class="">  
-                      <input matInput type="text" name="lieu" placeholder="lieu" [(ngModel)]="affaire.lieu">   
-                    </mat-form-field>  
-         
-                    <mat-form-field class="">  
-                      <input matInput type ="text"  name="dateOuverture" placeholder="date: aaaa/mm/jj"  
-                      [(ngModel)]="affaire.dateOuverture">  
-                      </mat-form-field>  
-
-      
-       <div class="ligne3">  
-            <button     
-            [ngStyle.sm]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}"   
-            [ngStyle.xs]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}"   
-            type="submit">Annuler</button>  
-
-            <button    
-            [ngStyle.sm]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}"   
-            [ngStyle.xs]="{'width.%': 40, 'height.em': 4, 'border-radius.%': 0}"  
-            type="submit">Soumettre</button>  
-        </div>  
-      </form>  
-        
-        
-### Mettre en place des procédures de contrôle de saisie
-Pour l'immatriculation des voitures, une regex a été créée côté back-end. Côté Front-end, un attribut required a été ajouté dans l'input correspondant
-        
+    
 ### Faire un test unitaire manuel  
 Exemple d'un test crée pour tester la méthose getVehiculeDetail grâce à la librairie Mockito :  
 
@@ -283,7 +202,7 @@ Exemple d'un test crée pour tester la méthose getVehiculeDetail grâce à la l
 	}  
 	}    
         
-### Coder avec un langae orienté objet  
+### Coder avec un langage orienté objet  
 TypeScript étant un langage orienté objet, nous avons défini toutes nos classes dans le fichier model.ts :  
 	
 		export class Affaire {  

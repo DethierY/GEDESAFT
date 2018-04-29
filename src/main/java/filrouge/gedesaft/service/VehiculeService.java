@@ -50,7 +50,6 @@ public class VehiculeService {
 	private boolean verifierImmatriculation(String immatriculation) {
 		Pattern p = Pattern.compile("^[A-Z]{1,3}-[0-9]{1,3}-[A-Z]{1,3}$");
 		Matcher m = p.matcher(immatriculation);
-		System.out.println("résultat verifierImmatriculation: " + m.find());
 		return m.find();
 	}
 }

@@ -45,7 +45,7 @@ public class VehiculeControllerTest {
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		       
         System.out.println(result.getResponse());
-        String expected = "{id_vehicule:1, type:camion}";
+        String expected = "{id:1, type:camion}";
 	        
         JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
 	}

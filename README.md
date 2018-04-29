@@ -16,7 +16,7 @@
 
 
 ### Faire un diagramme des classes
-![](DiagrammeClasses.PNG)
+![](UML/DiagrammeClasses.PNG)
         
         
 ### Identifier les acteurs d'un SI

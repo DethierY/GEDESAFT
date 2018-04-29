@@ -9,10 +9,10 @@
 [authentification](UML/diagrammeActivite_autentification.pdf)  
 [creation Arme](UML/diagrammeActivite_creationArme.pdf)  
 [creation Protagoniste](UML/diagrammeActivite_creationProtagoniste.pdf)  
-[creation Vehicule](https://github.com/rudylps/diagrammes_gedesaft_v2/blob/master/diagrammeActivite_creationVehicule.pdf)  
-[gérer les accès](https://github.com/rudylps/diagrammes_gedesaft_v2/blob/master/diagrammeActivite_gestionAcces.pdf)  
-[rechercher une arme](https://github.com/rudylps/diagrammes_gedesaft_v2/blob/master/diagrammeActivite_rechercheArme.pdf)  
-[rechercher un véhicule](https://github.com/rudylps/diagrammes_gedesaft_v2/blob/master/diagrammeActivite_rechercheVehicule.pdf)  
+[creation Vehicule](UML/diagrammeActivite_creationVehicule.pdf)  
+[gérer les accès]UML/diagrammeActivite_gestionAcces.pdf)  
+[rechercher une arme](UML/diagrammeActivite_rechercheArme.pdf)  
+[rechercher un véhicule](UML/diagrammeActivite_rechercheVehicule.pdf)  
 
 
 ### Faire un diagramme des classes
@@ -28,7 +28,7 @@ Le personnel judiciaire
 
         
 ### Dessiner des wireframe ou mockup (écrans)
-[Mockups](https://github.com/rudylps/diagrammes_gedesaft_v2/blob/master/mockUp.bmpr)
+[Mockups](UML/mockUp.bmpr)
 Le lien amène à un fichier à télécharger en cliquant sur View Raw. Le fichier mockUp.bmpr s'ouvre avec le logiciel Balsamiq  
 [télécharger Balsamiq](https://balsamiq.com/)
         
@@ -92,7 +92,7 @@ Pour générer la base de données nous avons utilisé le logiciel [MySQLWorkBen
 
 ### Installer un SGBDR
 Lancer MySQL Workbench.  
-Ouvrir le fichier [gedesaft2BIS.mwb](gedesaft2BIS.mwb) 
+Ouvrir le fichier [gedesaft2BIS.mwb](UML/gedesaft2BIS.mwb) 
 
 	File -> Export -> Forward Engineer SQL CREATE SCRIPT ->  
 	Choisir le dossier où sauvegarder le ficher SQL -> Next -> Next -> Finish  
@@ -458,7 +458,7 @@ Allez dans le dossier **resources** (GEDESAFT\src\main\resources) :
 Dedans se trouve fichier **application.properties**, il faut indiquer les informations de connection a votre base de données (url, et identiffiants admins) 
 
 Lancer le server sql, 
-importer la base de données (avec le fichier gedesaft.sql présent dans le dossier des diagrammes https://github.com/rudylps/diagrammes_gedesaft_v2.git)
+importer la base de données (avec le fichier gedesaft.sql présent dans le dossier UML du repository github UML/diagrammes_gedesaft_v2.git)
 
 ## LANCEMENT DE L'APPLICATION
 

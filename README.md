@@ -3,12 +3,12 @@
 ## Maquetter une application
 
 ### Faire un diagramme USE CASE
-![](https://github.com/DethierY/GEDESAFT/blob/master/UML/diagramme_use_case.PNG)  
+![](UML/diagramme_use_case.PNG)  
 		
 ### Faire un diagramme d'activité
-[authentification](https://github.com/rudylps/diagrammes_gedesaft_v2/blob/master/diagrammeActivite_autentification.pdf)  
-[creation Arme](https://github.com/rudylps/diagrammes_gedesaft_v2/blob/master/diagrammeActivite_creationArme.pdf)  
-[creation Protagoniste](https://github.com/rudylps/diagrammes_gedesaft_v2/blob/master/diagrammeActivite_creationProtagoniste.pdf)  
+[authentification](UML/diagrammeActivite_autentification.pdf)  
+[creation Arme](UML/diagrammeActivite_creationArme.pdf)  
+[creation Protagoniste](UML/diagrammeActivite_creationProtagoniste.pdf)  
 [creation Vehicule](https://github.com/rudylps/diagrammes_gedesaft_v2/blob/master/diagrammeActivite_creationVehicule.pdf)  
 [gérer les accès](https://github.com/rudylps/diagrammes_gedesaft_v2/blob/master/diagrammeActivite_gestionAcces.pdf)  
 [rechercher une arme](https://github.com/rudylps/diagrammes_gedesaft_v2/blob/master/diagrammeActivite_rechercheArme.pdf)  

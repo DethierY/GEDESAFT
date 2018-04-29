@@ -388,13 +388,13 @@ L'application étant séparée en deux parties, il faut les démarrer toutes les
 ### Lancer l'application Springboot
 Cloner ou télécharger le dossier back-end https://github.com/DethierY/GEDESAFT.git
   
-    Créer un .jar : 
+    Créer un .jar et le lancer: 
     
-      Ouvrez une invite de commande dans le dossier "gedesaft" et lancez les lignes suivantes :
+      Ouvrez une invite de commande dans le dossier "GEDESAFT" et lancez les lignes suivantes :
       
-      - mvn package -DskipTests
+      - mvn package
       - cd target
-      - java -jar java-springboot-simplecrud-0.0.1-SNAPSHOT.jar"
+      - java -jar LesExperts-0.0.1-SNAPSHOT.jar"
 	  
 ### Lancer l'application Angular
 Ce projet a été généré avec Angular CLI 1.6.5

@@ -398,7 +398,7 @@ Cloner ou télécharger le dossier back-end https://github.com/DethierY/GEDESAFT
 	  
 ### Lancer l'application Angular
 Ce projet a été généré avec Angular CLI 1.6.5
-Cloner ou télécharger le dossier front-end https://github.com/milk42/FilRougeV2Front.git
+Cloner ou télécharger le dossier front-end https://github.com/DethierY/FilRougeV2Front.git
 
 Dans le dossier du front, lancer une ligne de commande
  - npm install

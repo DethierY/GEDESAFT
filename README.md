@@ -10,7 +10,7 @@
 [creation Arme](UML/diagrammeActivite_creationArme.pdf)  
 [creation Protagoniste](UML/diagrammeActivite_creationProtagoniste.pdf)  
 [creation Vehicule](UML/diagrammeActivite_creationVehicule.pdf)  
-[gérer les accès]UML/diagrammeActivite_gestionAcces.pdf)  
+[gérer les accès](UML/diagrammeActivite_gestionAcces.pdf)  
 [rechercher une arme](UML/diagrammeActivite_rechercheArme.pdf)  
 [rechercher un véhicule](UML/diagrammeActivite_rechercheVehicule.pdf)  
 

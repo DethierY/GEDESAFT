@@ -458,7 +458,7 @@ Allez dans le dossier **resources** (GEDESAFT\src\main\resources) :
 Dedans se trouve fichier **application.properties**, il faut indiquer les informations de connection a votre base de données (url, et identiffiants admins) 
 
 Lancer le server sql, 
-importer la base de données (avec le fichier gedesaft.sql présent dans le dossier UML du repository github UML/diagrammes_gedesaft_v2.git)
+importer la base de données (avec le fichier [gedesaft.sql](UML/diagrammes_gedesaft_v2.git) présent dans le dossier UML du repository github.
 
 ## LANCEMENT DE L'APPLICATION
 

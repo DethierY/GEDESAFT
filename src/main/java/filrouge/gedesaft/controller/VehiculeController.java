@@ -25,11 +25,11 @@ import filrouge.gedesaft.service.VehiculeService;
 @RequestMapping("/vehicule")
 public class VehiculeController {
 	
-	// injection d'une instance de la classe VehiculeService
+	// Injection d'une instance de la classe VehiculeService
 	@Autowired
 	private VehiculeService vehiculeService;
 
-	// Méthode permettant d'obtenir les données d'un véhicule
+	// Obtenir les données d'un véhicule
 	// Renvoie une erreur 404 en cas d'échec de la requête
 	// Renvoie la réponse 200 en cas de succès de la requête
 	/**
@@ -38,7 +38,6 @@ public class VehiculeController {
 	 */
 	@GetMapping(value= "/{id}")
 	public ResponseEntity<?> getVehiculeDetails(@PathVariable Long id) {
-		System.out.println("getVehicule, id: " + id);
 		Vehicule vehicule = null;
 		try {
 			vehicule = vehiculeService.getVehiculeDetail(id);
@@ -48,9 +47,14 @@ public class VehiculeController {
 		return ResponseEntity.status(HttpStatus.OK).body(vehicule);
 	}
 	
+	// Obtenir la liste des véhicules
+	// Renvoie une erreur 404 en cas d'échec de la requête
+	// Renvoie la réponse 200 en cas de succès de la requête	
+	/**
+	 * @return
+	 */
 	@GetMapping(value= "/list")
 	public ResponseEntity<?> getAllVehicule() {
-		System.out.println("getAllVehicule");
 		List<Vehicule> listVehicules = null;
 		try {
 			listVehicules = vehiculeService.getAllVehicules();
@@ -60,12 +64,18 @@ public class VehiculeController {
 		return ResponseEntity.status(HttpStatus.OK).body(listVehicules);
 	}
 	
+	// Création d'un nouveau véhicule
+	// Vérifie qu'il y a une immatriculation et un type
+	/**
+	 * @param vehicule
+	 * @return
+	 */
 	@PostMapping(value ="/create")
 	public ResponseEntity<?> addVehicule (@RequestBody Vehicule vehicule){
 		Vehicule createdVehicule;
 		String type = vehicule.getType();
 		String immatriculation = vehicule.getImmatriculation();
-		if((type == null) || (type.isEmpty())) {
+		if(((type == null) || (type.isEmpty())) || ((immatriculation == null) || (immatriculation.isEmpty()))) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le type de véhicule n'est pas défini!");
 		} else if ((immatriculation == null) || (immatriculation.isEmpty())) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("L'immatriculation du véhicule n'est pas renseignée");
@@ -80,13 +90,20 @@ public class VehiculeController {
 		}
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdVehicule);
 	}
-	
+
+	// Met à jour un véhicule
+	// vérifie qu'il y a un type et une immatriculation
+	/**
+	 * @param vehicule
+	 * @param id	 * @return
+	 * @throws Exception
+	 */
 	@PutMapping(value = "/update/{id}")
 	public ResponseEntity<?> updateVehicule(@RequestBody Vehicule vehicule,@PathVariable Long id) throws Exception {
 		Vehicule result = null;
 		String type = vehicule.getType();
 		String immatriculation = vehicule.getImmatriculation();
-		if((type == null) || (type.isEmpty())) {
+		if(((type == null) || (type.isEmpty())) || ((immatriculation == null) || (immatriculation.isEmpty()))) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Le type de véhicule n'est pas renseigné !");
 		} else if ((immatriculation == null) || (immatriculation.isEmpty())) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("L'immatriculation du véhicule n'est pas renseignée");
@@ -102,9 +119,13 @@ public class VehiculeController {
 		return ResponseEntity.status(HttpStatus.OK).body(result);
 	}
 	
+	// Supprime un véhicule
+	/**
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping(value = "/delete/{id}")
 	public ResponseEntity<?> deleteVehicule(@PathVariable Long id){
-		System.out.println("deleteVehicule, id: " + id);
 		try {
 		vehiculeService.deleteVehicule(id);
 		} catch (Exception e) {
@@ -113,9 +134,13 @@ public class VehiculeController {
 		return ResponseEntity.status(HttpStatus.OK).body(null);
 	}
 	
+	// Obtenir la liste des affaires dans lesquelles un véhicule est implqiué
+	/**
+	 * @param id
+	 * @return
+	 */
 	@GetMapping(value= "/{id}/affaires")
 	public ResponseEntity<?> getAllAffairesOfVehicule(@PathVariable Long id) {
-		System.out.println("getAllAffairesOfvehicule, id: " + id);
 		List<Affaire> listAffaires = null;
 		try {
 			listAffaires = vehiculeService.getAllAffairesOfVehicule(id);

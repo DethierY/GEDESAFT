@@ -30,6 +30,10 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		this.datasource = jdbcTemplate.getDataSource();
 	}
 
+	// Obtenir la liste des véhicules dans la base de données
+	/* (non-Javadoc)
+	 * @see filrouge.gedesaft.dao.VehiculeDAO#getListVehicules()
+	 */
 	@Override
 	public List<Vehicule> getListVehicules() throws Exception {
 		Connection con = datasource.getConnection();
@@ -58,6 +62,10 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		return aLlistOfVehicule;
 	}
 
+	// Chercher un véhicule dans la base de données
+	/* (non-Javadoc)
+	 * @see filrouge.gedesaft.dao.VehiculeDAO#getVehicule(java.lang.Long)
+	 */
 	@Override
 	public Vehicule getVehicule (Long id) throws Exception {
 		Connection con = datasource.getConnection();
@@ -83,6 +91,12 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		return vehicule;
 	}
 	
+	// Chercher une Personne - propriétaire d'un véhicule - dans la base de données
+	/**
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	private Personne getPersonne (Long id) throws Exception {
 		Connection con = datasource.getConnection();
 		PreparedStatement pstmt = null;
@@ -111,6 +125,10 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		}
 	}
 
+	// Ajouter un véhicule dans la base de données
+	/* (non-Javadoc)
+	 * @see filrouge.gedesaft.dao.VehiculeDAO#insertVehicule(filrouge.gedesaft.model.Vehicule)
+	 */
 	@Override
 	public Vehicule insertVehicule(Vehicule vehicule) throws Exception {
 		Connection con = datasource.getConnection();
@@ -145,6 +163,11 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		return result;
 	}
 
+	
+	// Mettre à jour un véhicule dans la base de données
+	/* (non-Javadoc)
+	 * @see filrouge.gedesaft.dao.VehiculeDAO#updateVehicule(filrouge.gedesaft.model.Vehicule)
+	 */
 	@Override
 	public Vehicule updateVehicule(Vehicule vehicule) throws Exception {
 		Connection con = datasource.getConnection();
@@ -177,6 +200,10 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		return result;
 	}
 
+	// Supprimer un véhicule dans la base de données
+	/* (non-Javadoc)
+	 * @see filrouge.gedesaft.dao.VehiculeDAO#deleteVehicule(java.lang.Long)
+	 */
 	@Override
 	public void deleteVehicule(Long id) throws Exception {
 		Connection con = datasource.getConnection();
@@ -223,6 +250,10 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		}
 	}
 	
+	// Chercher les affaires dans lesquelles un véhicule est impliqué dans la base de données
+	/* (non-Javadoc)
+	 * @see filrouge.gedesaft.dao.VehiculeDAO#getAffairesOfVehicule(java.lang.Long)
+	 */
 	@Override
 	public List<Affaire> getAffairesOfVehicule(Long id) throws Exception {
 		Connection con = datasource.getConnection();
@@ -255,6 +286,12 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		return aLlistOfAffaire;
 	}
 
+	// Instancier un Vehicule à partir d'un ResultSet
+	/**
+	 * @param rs
+	 * @return
+	 * @throws Exception
+	 */
 	private Vehicule getVehiculeFromResultSet(ResultSet rs) throws Exception {
 		Vehicule vehicule = new Vehicule();
 		vehicule.setId(rs.getLong("id"));
@@ -267,6 +304,17 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		return vehicule;
 	}
 	
+	// Instancier une personne à partir d'un ResultSet	
+	/**
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
+	/**
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
 	private Personne getPersonneFromResultSet(ResultSet rs) throws SQLException {
 		Personne personne = new Personne();
 		personne.setIdPersonne(rs.getLong("idPersonne"));
@@ -276,6 +324,12 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		return personne;
 	}
 	
+	// Instancier une Afffaire à partir d'un ResultSet
+	/**
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
 	private Affaire getAffaireFromResultSet(ResultSet rs) throws SQLException {
 		Affaire affaire = new Affaire();
 		affaire.setId(rs.getLong("id"));
@@ -285,6 +339,10 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		return affaire;
 	}
 
+	// Inscription des requêtes dans le fichier log
+	/**
+	 * @param pstmt
+	 */
 	private void logSQL(PreparedStatement pstmt) {
 		String sql;		
 		if (pstmt == null)

@@ -45,9 +45,10 @@ public class VehiculeService {
 	 */
 	public Vehicule addVehicule(Vehicule vehicule) throws Exception {
 		if (verifierImmatriculation(vehicule.getImmatriculation())) {
-			return dao.updateVehicule(vehicule);
-		};
-		return null;
+			return dao.insertVehicule(vehicule);
+		} else {
+			return null;
+		}
 	}
 	
 	// Editer un véhicule

@@ -144,7 +144,8 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 			pstmt.setString(++i, vehicule.getMarque());
 			pstmt.setString(++i, vehicule.getModele());
 			pstmt.setString(++i, vehicule.getImmatriculation());
-			pstmt.setString(++i, vehicule.getCouleur());		
+			pstmt.setString(++i, vehicule.getCouleur());
+			
 			logSQL(pstmt);
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.getGeneratedKeys();
@@ -184,6 +185,7 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 			pstmt.setString(++i, vehicule.getCouleur());
 			pstmt.setLong(++i, vehicule.getProprietaire().getIdPersonne());
 			pstmt.setLong(++i, vehicule.getId());
+			System.out.println("pstmt = " + pstmt.toString());
 			logSQL(pstmt);
 			int resultCount = pstmt.executeUpdate();
 			if(resultCount != 1)

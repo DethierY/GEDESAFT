@@ -83,7 +83,7 @@ public class VehiculeController {
 		try {
 			createdVehicule = vehiculeService.addVehicule(vehicule);
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
 		}
 		if (createdVehicule == null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Immatriculation non conforme");

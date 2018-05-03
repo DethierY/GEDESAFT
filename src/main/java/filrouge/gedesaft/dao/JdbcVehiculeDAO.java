@@ -174,7 +174,7 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		Connection con = datasource.getConnection();
 		Vehicule result = null;
 		PreparedStatement pstmt = null;
-		int i = 0;);
+		int i = 0;
 		try {
 			String sql;
 			if (vehicule.getProprietaire() == null ) {
@@ -197,14 +197,12 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 				pstmt.setLong(++i, vehicule.getProprietaire().getIdPersonne());
 				pstmt.setLong(++i, vehicule.getId());
 			}
-			System.out.println("pstmt = " + pstmt.toString());
 			logSQL(pstmt);
 			int resultCount = pstmt.executeUpdate();
 			if(resultCount != 1)
 				throw new Exception("vehicule not found !");		
 			result = vehicule;
 		} catch (SQLException e) {
-			System.out.println("Dans le catch du update");
 			e.printStackTrace();
 			log.error("SQL Error !:" + pstmt.toString(), e);
 			throw e;

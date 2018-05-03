@@ -86,7 +86,7 @@ public class VehiculeController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e);
 		}
 		if (createdVehicule == null) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(createdVehicule);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Immatriculation non conforme");
 		}
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdVehicule);
 	}

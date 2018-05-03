@@ -174,17 +174,29 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 		Connection con = datasource.getConnection();
 		Vehicule result = null;
 		PreparedStatement pstmt = null;
-		int i = 0;				
+		int i = 0;);
 		try {
-			String sql = "UPDATE vehicules SET type= ?, marque= ?, modele= ?, immatriculation= ?, couleur=?, personnes_idPersonne= ? WHERE id = ?";
-			pstmt = con.prepareStatement(sql);		
-			pstmt.setString(++i, vehicule.getType());
-			pstmt.setString(++i, vehicule.getMarque());
-			pstmt.setString(++i, vehicule.getModele());
-			pstmt.setString(++i, vehicule.getImmatriculation());
-			pstmt.setString(++i, vehicule.getCouleur());
-			pstmt.setLong(++i, vehicule.getProprietaire().getIdPersonne());
-			pstmt.setLong(++i, vehicule.getId());
+			String sql;
+			if (vehicule.getProprietaire() == null ) {
+				sql = "UPDATE vehicules SET type= ?, marque= ?, modele= ?, immatriculation= ?, couleur=? WHERE id = ?";
+				pstmt = con.prepareStatement(sql);		
+				pstmt.setString(++i, vehicule.getType());
+				pstmt.setString(++i, vehicule.getMarque());
+				pstmt.setString(++i, vehicule.getModele());
+				pstmt.setString(++i, vehicule.getImmatriculation());
+				pstmt.setString(++i, vehicule.getCouleur());
+				pstmt.setLong(++i, vehicule.getId());				
+			} else {
+				sql = "UPDATE vehicules SET type= ?, marque= ?, modele= ?, immatriculation= ?, couleur=?, personnes_idPersonne= ? WHERE id = ?";
+				pstmt = con.prepareStatement(sql);		
+				pstmt.setString(++i, vehicule.getType());
+				pstmt.setString(++i, vehicule.getMarque());
+				pstmt.setString(++i, vehicule.getModele());
+				pstmt.setString(++i, vehicule.getImmatriculation());
+				pstmt.setString(++i, vehicule.getCouleur());
+				pstmt.setLong(++i, vehicule.getProprietaire().getIdPersonne());
+				pstmt.setLong(++i, vehicule.getId());
+			}
 			System.out.println("pstmt = " + pstmt.toString());
 			logSQL(pstmt);
 			int resultCount = pstmt.executeUpdate();
@@ -192,6 +204,7 @@ public class JdbcVehiculeDAO implements VehiculeDAO {
 				throw new Exception("vehicule not found !");		
 			result = vehicule;
 		} catch (SQLException e) {
+			System.out.println("Dans le catch du update");
 			e.printStackTrace();
 			log.error("SQL Error !:" + pstmt.toString(), e);
 			throw e;
